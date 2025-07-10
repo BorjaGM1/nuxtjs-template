@@ -38,14 +38,16 @@ export default defineNuxtConfig({
     public: {
       stripePublishableKey: process.env.NUXT_PUBLIC_STRIPE_PUBLISHABLE_KEY,
       siteUrl: process.env.NUXT_PUBLIC_SITE_URL,
-      supabaseUrl: process.env.NUXT_PUBLIC_SUPABASE_URL,
-      supabaseAnonKey: process.env.NUXT_PUBLIC_SUPABASE_ANON_KEY,
+      supabase: {
+        url: process.env.NUXT_SUPABASE_URL || process.env.SUPABASE_URL,
+        key: process.env.NUXT_SUPABASE_KEY || process.env.SUPABASE_KEY,
+      },
     }
   },
-
+  // Optional: additional Supabase redirect settings
   supabase: {
-    url: process.env.SUPABASE_URL,
-    key: process.env.SUPABASE_KEY,
+    url: process.env.NUXT_SUPABASE_URL || process.env.SUPABASE_URL,
+    key: process.env.NUXT_SUPABASE_KEY || process.env.SUPABASE_KEY,
     redirectOptions: {
       login: '/login',
       callback: '/dashboard',
